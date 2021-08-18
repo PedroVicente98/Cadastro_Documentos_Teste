@@ -1,0 +1,32 @@
+﻿@model Cadastro_Documentos_Teste.Models.ViewModels.DocumentosViewModel
+<section>
+    <h2>Cadastrar Documento</h2>
+    <form action="/Documentos/CadastrarDocumentos" method="POST" runat="server" enctype="multipart/form-data">
+        <div class="row gtr-uniform">
+            <div class="col-6 col-12-xsmall">
+                <input type="number" name="Codigo" id="codigo" value="" placeholder="Codigo" required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+                <input type="text" name="Titulo" id="titulo" value="" placeholder="Titulo" required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+                <input type="text" name="Processo" id="processo" value="" placeholder="Processo" required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+                <input type="text" name="Categoria" id="categoria" value="" placeholder="Categoria" required />
+            </div>
+
+            <div class="col-6 col-12-xsmall">
+                <!--Envio de Arquivo-->
+                <label class="focus">Arquivo</label>
+                <input type="file" name="Arquivo" id="arquivo" value="" placeholder="Arquivo" required />
+            </div>
+
+            <div class="col-12">
+                <ul class="actions">
+                    <li><button id="btnUpload" type="submit" text="Cadastrar" runat="server">Cadastrar</button></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</section>

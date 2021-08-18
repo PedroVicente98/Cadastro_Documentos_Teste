@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cadastro de Documentos ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/main.css" />
+    <noscript><link rel="stylesheet" type="text/css" href="~/Content/noscript.css" /></noscript>
+
+</head>
+
+
+<body>
+    <header id="header">
+        <a href="/Home/Index" class="title"> Teste Tecnico</a>
+        <nav>
+            <ul>
+                <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                <li>@Html.ActionLink("Cadastrar Documento", "CadastrarDocumentos", "Documentos")</li>
+                <li>@Html.ActionLink("Consultar Documentos", "ConsultarDocumentos", "Documentos")</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container body-content">
+        @Html.Partial("_Notifications")
+        @RenderBody()
+        <hr />
+        <footer id="footer" class="wrapper alt">
+            <div class="inner">
+                <ul class="menu">
+                    <li>&copy; Teste Tecnico @DateTime.Now.Year</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

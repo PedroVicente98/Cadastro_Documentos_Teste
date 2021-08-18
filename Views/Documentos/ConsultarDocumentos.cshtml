@@ -1,0 +1,60 @@
+﻿@model List<Cadastro_Documentos_Teste.Models.ViewModels.DocumentosViewModel>
+<!DOCTYPE HTML>
+<html>
+<head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="~/Content/main.css" />
+    <noscript><link rel="stylesheet" type="text/css" href="~/Content/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <section id="main" class="wrapper">
+            <div class="inner">
+                <h1 class="major">Tabela de Documentos</h1>
+
+                <!-- Table -->
+                <section>
+                    
+                    <div class="table-wrapper">
+                        <table class="alt">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Titulo</th>
+                                    <th>Processo</th>
+                                    <th>Categoria</th>
+                                    <th>Arquivo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@item.Codigo</td>
+                                    <td>@item.Titulo</td>
+                                    <td>@item.Processo</td>
+                                    <td>@item.Categoria</td>
+                                    <td>@item.NomeArquivo
+                                        <div class="actions"> @Html.ActionLink(linkText: "Baixar", actionName: "BaixarArquivo", controllerName: "Documentos", routeValues: new { NomeArquivo = item.NomeArquivo}, htmlAttributes: null);</div>
+                                    </td>
+                                </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>                
+                </section>
+            </div>
+        </section>
+
+    </div>
+
+  
+ 
+</body>
+</html>
