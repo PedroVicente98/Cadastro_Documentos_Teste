@@ -23,21 +23,26 @@ namespace Cadastro_Documentos_Teste.Controllers
 
             MySqlConnection conexao = new MySqlConnection("server = localhost;user = root; port = 3306; password = mysql123;");
             MySqlCommand comandoBase = new MySqlCommand(comandobase, conexao);
-            
+
+            string msg = "Base de Dados Criada";
+            var notificationType = NotificationType.SUCCESS;
+
             try
             {
                 conexao.Open();
                 comandoBase.ExecuteNonQuery();
 
-                TempData["success"] = "Base de Dados Criada";
+                
             }
             catch (MySqlException e)
             {
-                var error = "Error" + e.ErrorCode + ": " + e.Message;
-                TempData["error"] = error;
+                msg = e.ErrorCode + ": " + e.Message;
+                notificationType = NotificationType.ERROR;
+
             }
             finally
             {
+                this.AddNotification(msg, notificationType);
                 conexao.Close();
             }
 
@@ -49,15 +54,16 @@ namespace Cadastro_Documentos_Teste.Controllers
                 conexao.Open();
                 comandoBase.ExecuteNonQuery();
 
-                TempData["success"] = "Base de Dados Criada";
+                msg = "Tabela Criada";
             }
             catch (MySqlException e)
             {
-                var error = "Error" + e.ErrorCode + ": " + e.Message;
-                TempData["error"] = error;
+                msg = e.ErrorCode + ": " + e.Message;
+                notificationType = NotificationType.ERROR;
             }
             finally
             {
+                this.AddNotification(msg, notificationType);
                 conexao.Close();
             }
 
