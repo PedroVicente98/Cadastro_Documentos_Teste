@@ -27,19 +27,19 @@ namespace Cadastro_Documentos_Teste.Controllers
         {
             if (ArquivoValido(model.Arquivo))
             {
-                MySqlConnection conexao = new MySqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
-                string comando = "INSERT INTO documentos(Codigo, Titulo, Processo, Categoria, NomeArquivo, ExtensaoArquivo, ConteudoArquivo) VALUES (@Codigo, @Titulo, @Processo, @Categoria, @NomeArquivo, @ExtensaoArquivo, @ConteudoArquivo)";
-                MySqlCommand cmd = new MySqlCommand(comando, conexao);
+                var conexao = new MySqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
+                var comando = "INSERT INTO documentos(Codigo, Titulo, Processo, Categoria, NomeArquivo, ExtensaoArquivo, ConteudoArquivo) VALUES (@Codigo, @Titulo, @Processo, @Categoria, @NomeArquivo, @ExtensaoArquivo, @ConteudoArquivo)";
+                var cmd = new MySqlCommand(comando, conexao);
 
                 var ExtensaoArquivo = model.Arquivo.ContentType;
                 var NomeArquivo = model.Arquivo.FileName;
 
-                MemoryStream ms = new MemoryStream();
+                var ms = new MemoryStream();
                 model.Arquivo.InputStream.CopyTo(ms);
 
                 var ConteudoArquivo = ms.ToArray();
 
-                string msg = "Cadastro Feito";
+                var msg = "Cadastro Feito";
                 var notificationType = NotificationType.SUCCESS;
 
 
@@ -83,7 +83,7 @@ namespace Cadastro_Documentos_Teste.Controllers
         private bool ArquivoValido(HttpPostedFileBase file)
         {
             //PDF, DOC, XLS, DOCX e XLSX. 
-            string[] formats = new string[] {"doc", "docx", "pdf", "xls", "xlsx" }; // add more if u like...
+            var formats = new string[] {"doc", "docx", "pdf", "xls", "xlsx" }; // add more if u like...
           
             // linq from Henrik Stenbæk
             return formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase));
@@ -91,21 +91,21 @@ namespace Cadastro_Documentos_Teste.Controllers
 
         public ActionResult ConsultarDocumentos()
         {
-            MySqlConnection conexao = new MySqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM Documentos ORDER BY Titulo;", conexao);
-            List<DocumentosViewModel> ListaDocumentos = new List<DocumentosViewModel>();
+            var conexao = new MySqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
+            var cmd = new MySqlCommand("SELECT * FROM Documentos ORDER BY Titulo;", conexao);
+            var ListaDocumentos = new List<DocumentosViewModel>();
 
             try
             {
                 conexao.Open();
 
-                DataTable tabDados = new DataTable();
+                var tabDados = new DataTable();
 
                 tabDados.Load(cmd.ExecuteReader());
 
                 foreach (DataRow dr in tabDados.Rows)
                 {
-                    DocumentosViewModel documento = new DocumentosViewModel
+                    var documento = new DocumentosViewModel
                     {
                         Codigo = Convert.ToInt32(dr["Codigo"]),  
                         Titulo = dr["Titulo"].ToString(),
@@ -133,9 +133,9 @@ namespace Cadastro_Documentos_Teste.Controllers
 
         public ActionResult BaixarArquivo(string NomeArquivo) 
         {
-            MySqlConnection conexao = new MySqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
+            var conexao = new MySqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
             var comandoArquivo = "SELECT ConteudoArquivo, ExtensaoArquivo FROM documentos WHERE NomeArquivo = @NomeArquivo;";
-            MySqlCommand cmd = new MySqlCommand(comandoArquivo, conexao);
+            var cmd = new MySqlCommand(comandoArquivo, conexao);
             string ExtensaoArquivo = null;
             byte[] ConteudoArquivo = null;
             try 

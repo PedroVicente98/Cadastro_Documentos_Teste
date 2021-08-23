@@ -18,13 +18,13 @@ namespace Cadastro_Documentos_Teste.Controllers
 
         public ActionResult CriarBaseDeDados() 
         {
-            string comandobase = "CREATE DATABASE CadastroDocumentos;";
-            string comandotabela = "CREATE TABLE Documentos (Codigo int NOT NULL, Titulo VARCHAR(255) NOT NULL, Processo VARCHAR(255) NOT NULL,Categoria VARCHAR(255) NOT NULL,NomeArquivo VARCHAR(255) NOT NULL, ExtensaoArquivo VARCHAR(255) NOT NULL, ConteudoArquivo MEDIUMBLOB NOT NULL,PRIMARY KEY (Codigo));";
+            var comandobase = "CREATE DATABASE CadastroDocumentos;";
+            var comandotabela = "CREATE TABLE Documentos (Codigo int NOT NULL, Titulo VARCHAR(255) NOT NULL, Processo VARCHAR(255) NOT NULL,Categoria VARCHAR(255) NOT NULL,NomeArquivo VARCHAR(255) NOT NULL, ExtensaoArquivo VARCHAR(255) NOT NULL, ConteudoArquivo MEDIUMBLOB NOT NULL,PRIMARY KEY (Codigo));";
 
-            MySqlConnection conexao = new MySqlConnection("server = localhost;user = root; port = 3306; password = mysql123;");
-            MySqlCommand comandoBase = new MySqlCommand(comandobase, conexao);
+            var conexao = new MySqlConnection("server = localhost;user = root; port = 3306; password = mysql123;");
+            var comandoBase = new MySqlCommand(comandobase, conexao);
 
-            string msg = "Base de Dados Criada";
+            var msg = "Base de Dados Criada";
             var notificationType = NotificationType.SUCCESS;
 
             try
