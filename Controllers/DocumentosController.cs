@@ -92,7 +92,7 @@ namespace Cadastro_Documentos_Teste.Controllers
         public ActionResult ConsultarDocumentos()
         {
             MySqlConnection conexao = new MySqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM Documentos ORDER BY Titulo DESC;", conexao);
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM Documentos ORDER BY Titulo;", conexao);
             List<DocumentosViewModel> ListaDocumentos = new List<DocumentosViewModel>();
 
             try
