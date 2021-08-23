@@ -131,17 +131,17 @@ namespace Cadastro_Documentos_Teste.Controllers
             return View(ListaDocumentos);
         }
 
-        public ActionResult BaixarArquivo(string NomeArquivo) 
+        public ActionResult BaixarArquivo(int Codigo) 
         {
             var conexao = new MySqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
-            var comandoArquivo = "SELECT ConteudoArquivo, ExtensaoArquivo FROM documentos WHERE NomeArquivo = @NomeArquivo;";
+            var comandoArquivo = "SELECT ConteudoArquivo, ExtensaoArquivo FROM documentos WHERE Codigo = @Codigo;";
             var cmd = new MySqlCommand(comandoArquivo, conexao);
             string ExtensaoArquivo = null;
             byte[] ConteudoArquivo = null;
             try 
             {
                 conexao.Open();
-                cmd.Parameters.AddWithValue("@NomeArquivo", NomeArquivo);
+                cmd.Parameters.AddWithValue("@Codigo", Codigo);
                 var leitor = cmd.ExecuteReader();
                 leitor.Read();
                 ConteudoArquivo = (byte[])leitor.GetValue(leitor.GetOrdinal("ConteudoArquivo"));

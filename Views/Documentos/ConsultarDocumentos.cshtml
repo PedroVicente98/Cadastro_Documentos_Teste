@@ -40,7 +40,7 @@
                                     <td>@item.Processo</td>
                                     <td>@item.Categoria</td>
                                     <td>@item.NomeArquivo
-                                        <div class="actions"> @Html.ActionLink(linkText: "Baixar", actionName: "BaixarArquivo", controllerName: "Documentos", routeValues: new { NomeArquivo = item.NomeArquivo}, htmlAttributes: null);</div>
+                                        <div class="actions"> @Html.ActionLink(linkText: "Baixar", actionName: "BaixarArquivo", controllerName: "Documentos", routeValues: new { Codigo = item.Codigo}, htmlAttributes: new { target = "_blank" });</div>
                                     </td>
                                 </tr>
                                 }
